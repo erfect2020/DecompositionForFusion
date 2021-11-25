@@ -21,7 +21,7 @@ network_G:
 path:
   pretrain_model_G: ~
   strict_load: true
-  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/SelftrainedFinalCopy/models/50_models.pth
+  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/SelftrainedFinalCopy/models/models.pth
   pretrained_models_state: ~
 
 logger:
