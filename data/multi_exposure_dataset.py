@@ -99,23 +99,18 @@ class TrainDataset(Dataset):
 
     def __getitem__(self, index):
         c_img, (o_img, u_img, train_type) = self.iget_imgs[index]
-        # print(c_img, o_img, u_img)
-        # o_img = cv2.imread(o_img, 1)
-        # u_img = cv2.imread(u_img, 1)
 
         o_img = Image.open(o_img).convert("RGB")
         u_img = Image.open(u_img).convert("RGB")
 
         o_img = self.img_transform(o_img)
         u_img = self.img_transform(u_img)
-        # print("size", o_img.shape, u_img.shape)
         combime_img = self.img_resize(torch.cat((o_img, u_img), dim=0))
         o_img = combime_img[:3, :, :]
         u_img = combime_img[3:, :, :]
 
         if torch.rand(1) > 0.5:
             o_img, u_img = u_img, o_img
-
         if train_type == self.train_type[2]:
             u_img = torch.rand_like(u_img)
         elif train_type == self.train_type[3]:
