@@ -16,7 +16,7 @@
 
 - Clone this repo:
 ```bash
-git clone https://github.com/xxxxx/XXXXXXX
+git clone https://github.com/XXXXX/XXXXXXX
 cd DecompositionForFusion
 ```
 
