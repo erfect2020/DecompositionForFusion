@@ -67,14 +67,12 @@ class TestTNODataset(Dataset):
         gt_imgs = []
         for img_seq in tqdm(part_imgs):
             up, low = sorted(os.listdir(img_seq))
-            # print('gt: ', gt, 'up: ', up, 'low: ', low)
             if 'ir' in up.lower():
                 ir_imgs.append(os.path.join(img_seq, up))
                 vi_imgs.append(os.path.join(img_seq, low))
             else:
                 vi_imgs.append(os.path.join(img_seq, up))
                 ir_imgs.append(os.path.join(img_seq, low))
-                            # gt_imgs.append(os.path.join(img_seq, gt))
 
         ir_imgs.sort()
         vi_imgs.sort()
