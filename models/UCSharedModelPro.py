@@ -88,11 +88,8 @@ class UCSharedNetPro(nn.Module):
         feature_upper = self.encoder_upper(img1)
         feature_upper0 = self.maxpool_upper(feature_upper)
         feature_upper1 = self.upper_encoder_layer1(feature_upper0)
-        # print("feature upper1", feature_upper1.shape)
         feature_upper2 = self.upper_encoder_layer2(feature_upper1)
-        # print("feature upper2", feature_upper2.shape)
         feature_upper3 = self.upper_encoder_layer3(feature_upper2)
-        # print("feature upper3", feature_upper3.shape)
 
         feature_lower = self.encoder_lower(img2)
         feature_lower0 = self.maxpool_lower(feature_lower)
@@ -105,19 +102,14 @@ class UCSharedNetPro(nn.Module):
 
         common_part = self.decoder_common_layer1(feature_common)
         common_part = self.decoder_common_up1(common_part)
-        # print("common part1", common_part.shape)
         common_part = self.decoder_common_layer2(common_part)
         common_part = self.decoder_common_up2(common_part)
-        # print("common part2", common_part.shape)
         common_part = self.decoder_common_layer3(common_part)
         common_part = self.decoder_common_up3(common_part)
-        # print("common part3", common_part.shape)
         common_part = self.decoder_common_layer4(common_part)
         common_part_embedding = common_part
         common_part = self.decoder_upper_projection_layer(common_part)
-        # print("common part4", common_part.shape)
 
-        # print("decode feature upper", feature_de_upper.shape)
         feature_de_upper = torch.cat((feature_common, feature_upper3), dim=1)
         upper_part = self.decoder_upper_layer1(feature_de_upper)
         upper_part = self.decoder_upper_up1(upper_part)
@@ -131,7 +123,6 @@ class UCSharedNetPro(nn.Module):
         upper_part_embeding = upper_part
         upper_part = self.decoder_upper_projection_layer(upper_part)
 
-        # print("decode feature lower", feature_de_lower.shape)
         feature_de_lower = torch.cat((feature_common, feature_lower3), dim=1)
         lower_part = self.decoder_lower_layer1(feature_de_lower)
         lower_part = self.decoder_lower_up1(lower_part)
@@ -145,15 +136,6 @@ class UCSharedNetPro(nn.Module):
         lower_part_embeddding = lower_part
         lower_part = self.decoder_lower_projection_layer(lower_part)
 
-        # common_part = common_part.clamp(0, 1)
-        # upper_part = upper_part.clamp(0, 1)
-        # lower_part = lower_part.clamp(0, 1)
-
-        # upper_part_f = torch.cat((upper_part[:, 0:1, :, :], lower_part[:, 0:1, :, :], common_part[:, 0:1, :, :]), dim=1)
-        # lower_part_f = torch.cat((upper_part[:, 1:2, :, :], lower_part[:, 1:2, :, :], common_part[:, 1:2, :, :]), dim=1)
-        # common_part_f = torch.cat((upper_part[:, 2:3, :, :], lower_part[:, 2:3, :, :], common_part[:, 2:3, :, :]), dim=1)
         fusion_part = self.fusion_rule(upper_part_embeding+ lower_part_embeddding+ common_part_embedding)
-
-        # fusion_part = fusion_part.clamp(0, 1)
 
         return common_part, upper_part, lower_part, fusion_part
