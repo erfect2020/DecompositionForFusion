@@ -1,18 +1,11 @@
-from kornia.losses import js_div_loss_2d, SSIMLoss
 import torch.nn as nn
 import torch
-from kornia.color import rgb_to_lab
 
 class SelfTrainLoss(nn.Module):
     def __init__(self):
         super(SelfTrainLoss, self).__init__()
         self.l1_loss = nn.L1Loss()
-        # self.l1_loss = None
-        # self.l1_loss = SSIMLoss(window_size=11, reduction='mean')
-        self.js_loss = js_div_loss_2d
-        self.kl_loss = nn.KLDivLoss(log_target=True)
         self.mse_loss = nn.MSELoss()
-        self.ssim_loss = SSIMLoss(window_size=11, reduction='mean')
         self.is_train = False
         self.iteres = {
             'self_supervise_common_difficult': 0,
@@ -42,31 +35,7 @@ class SelfTrainLoss(nn.Module):
             compute_num['self_supervised_lower_mix'] = tmp
             losses['self_supervised_fusion_mix'] = 0
             compute_num['self_supervised_fusion_mix'] = tmp
-        if 'self_supervised_common_easy' in b_input_type:
-            tmp = b_input_type.count('self_supervised_common_easy')
-            losses['self_similar'] = 0
-            compute_num['self_similar'] = tmp
-            losses['zero_ul_constraint'] = 0
-            compute_num['zero_ul_constraint'] = tmp
-            losses['self_supervised_common_easy'] = 0
-            compute_num['self_supervised_common_easy'] = tmp
-        if 'self_supervised_upper' in b_input_type:
-            tmp = b_input_type.count('self_supervised_upper')
-            losses['self_upper_constraint'] = 0
-            compute_num['self_upper_constraint'] = tmp
-            losses['zero_common_constraint'] = 0
-            compute_num['zero_common_constraint'] = tmp
-            losses['self_supervised_upper'] = 0
-            compute_num['self_supervised_upper'] = tmp
-        if 'self_supervised_lower' in b_input_type:
-            tmp = b_input_type.count('self_supervised_lower')
-            losses['self_lower_constraint'] = 0
-            compute_num['self_lower_constraint'] = tmp
-            losses['zero_common_constraint'] = 0
-            compute_num['zero_common_constraint'] = tmp + compute_num['zero_common_constraint'] \
-                if 'zero_common_constraint' in compute_num else tmp
-            losses['self_supervised_lower'] = 0
-            compute_num['self_supervised_lower'] = tmp
+
 
     def forward(self, img1, img2, gt_img, common_part, upper_part, lower_part, fusion_part, b_input_type):
         losses = {}
@@ -128,34 +97,6 @@ class SelfTrainLoss(nn.Module):
                 losses['total_loss'] += self_supervised_common_mix_loss + self_supervised_upper_mix_loss \
                                          + self_supervised_lower_mix_loss + self_supervised_fusion_mix_loss #\
 
-            elif input_type == 'self_supervised_common_easy':
-                gt_img1_i = gt_i[:, 2:5, :, :]
-                gt_img2_i = gt_i[:, 5:8, :, :]
-                self_similar_loss = 1e-4 * self.l1_loss(common_part_i, gt_img1_i) + 5 * self.ssim_loss(common_part_i, gt_img1_i)
-                losses['self_similar'] += self_similar_loss
-                zero_ul_constraint_loss = upper_part_i.abs().mean() * 1e-2 + lower_part_i.abs().mean() * 1e-2
-                losses['zero_ul_constraint'] += zero_ul_constraint_loss
-                self_supervised_common_easy_loss = self_similar_loss + zero_ul_constraint_loss
-                losses['self_supervised_common_easy'] += self_supervised_common_easy_loss
-                losses['total_loss'] += self_supervised_common_easy_loss
-            elif input_type == 'self_supervised_upper':
-                self_upper_constraint_loss = self.l1_loss(upper_part_i, img1_i)
-                losses['self_upper_constraint'] += self_upper_constraint_loss
-                zero_common_constraint_loss = common_part_i.abs().mean() * 1e-2
-                losses['zero_common_constraint'] += zero_common_constraint_loss
-                self_supervised_upper_loss = self_upper_constraint_loss + zero_common_constraint_loss
-                losses['self_supervised_upper'] += self_supervised_upper_loss
-                losses['total_loss'] += self_supervised_upper_loss
-            elif input_type == 'self_supervised_lower':
-                self_lower_constraint_loss = self.l1_loss(lower_part_i, img2_i)
-                losses['self_lower_constraint'] += self_lower_constraint_loss
-                zero_common_constraint_loss = common_part_i.abs().mean() * 1e-2
-                losses['zero_common_constraint'] += zero_common_constraint_loss
-                self_supervised_lower_loss = self_lower_constraint_loss + zero_common_constraint_loss
-                losses['self_supervised_lower'] += self_supervised_lower_loss
-                losses['total_loss'] += self_supervised_lower_loss
-            else:
-                raise Exception('wrong input type {}'.format(input_type))
 
         for k, v in losses.items():
             if k in self.iteres.keys():
