@@ -5,7 +5,6 @@ Training
 1. Download [COCO](https://github.com/cocodataset/cocoapi): https://cocodataset.org/
 2. Put your training images into any floder and modify the `option/train/SelfTrained_SDataset.yaml' to retarget the path.
 3. Train DeFusion
-    1. Training
     ```bash
     python selftrain.py --opt options/train/SelfTrained_SDataset.yaml
     ```
@@ -15,8 +14,8 @@ Testing code
 ----------
 
 1. Download test dataset:
-    1.Multi-exposure image fusion: [MEFB](https://github.com/xingchenzhang/MEFB):https://github.com/xingchenzhang/MEFB 
-    2.Visible-infrared image fusion: [TNO](https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029):https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029
+    1. Multi-exposure image fusion: [MEFB](https://github.com/xingchenzhang/MEFB):https://github.com/xingchenzhang/MEFB 
+    2. Visible-infrared image fusion: [TNO](https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029):https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029
 3. Modify [test.py](test.py) to select the data preprocess files for different tasks: 
 4. Test DeFusion
     1. Test multi-exposure image fusion
