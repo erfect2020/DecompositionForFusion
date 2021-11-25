@@ -40,21 +40,11 @@ class TestDataset(Dataset):
     def __getitem__(self, index):
         c_img, (up_img, low_img) = self.iget_imgs[index]
 
-        # print('infrare image', up_img)
-        # print('visible image', low_img)
-
         up_img = Image.open(up_img).convert('L').convert('RGB')
         low_img = Image.open(low_img).convert('L').convert('RGB')
 
         up_img = self.img_transform(up_img)
         low_img = self.img_transform(low_img)
-        # u_img = torch.rand_like(u_img)
-
-        # o_img = cv2.imread(o_img, 1)
-        # u_img = cv2.imread(u_img, 1)
-        #
-        # o_img = torch.tensor(o_img / 65535.).float().permute(2, 0, 1)
-        # u_img = torch.tensor(u_img / 65535.).float().permute(2, 0, 1)
 
         c_img = os.path.split(c_img)[-1].split('.')[0]
         return up_img, low_img, c_img
@@ -88,7 +78,6 @@ class TestTNODataset(Dataset):
 
         ir_imgs.sort()
         vi_imgs.sort()
-        # gt_imgs.sort()
 
         self.iget_imgs = {}
         for o_img, u_img in zip(ir_imgs, vi_imgs):
@@ -108,14 +97,6 @@ class TestTNODataset(Dataset):
 
         up_img = self.img_transform(up_img)
         low_img = self.img_transform(low_img)
-        # u_img = torch.rand_like(u_img)
-
-
-        # o_img = cv2.imread(o_img, 1)
-        # u_img = cv2.imread(u_img, 1)
-        #
-        # o_img = torch.tensor(o_img / 65535.).float().permute(2, 0, 1)
-        # u_img = torch.tensor(u_img / 65535.).float().permute(2, 0, 1)
 
         c_img = os.path.split(os.path.split(c_img)[-2])[-1]
         return up_img, low_img, c_img
