@@ -1,3 +1,5 @@
+# Fusion from Decomposition
+
 ## Prerequisites
 - Linux or macOS
 - Python 3
@@ -16,9 +18,9 @@ cd DecompositionForFusion
 ```
 
 
-# Fusion from Decomposition
 
-Start run
+
+## Start run
 ----------
 1. Download [COCO](https://github.com/cocodataset/cocoapi): https://cocodataset.org/
 2. Put your training images into any floder and modify the `option/train/SelfTrained_SDataset.yaml' to retarget the path.
@@ -28,7 +30,7 @@ Start run
     ```
 
 
-Start evaluation
+## Start evaluation
 ----------
 
 1. Download test dataset:
