@@ -19,17 +19,17 @@ Start evaluation
     3. Visible-infrared image fusion: [RoadScene](https://github.com/jiayi-ma/RoadScene):https://github.com/jiayi-ma/RoadScene, [TNO](https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029):https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029.
 3. Modify [test.py](test.py) to select the data preprocess files for different tasks: 
 4. Test DeFusion
-    1. Test multi-exposure image fusion
+    1. Test multi-exposure image fusion task on MEFB or SICE
     ```bash
     python test.py --opt options/test/MEF_Test_Dataset.yaml or
     python test.py --opt options/test/SMEF_Test_Dataset.yaml
     ```
-    2. Test multi-focus image fusion
+    2. Test multi-focus image fusion task on Real-MFF or [Dataset](https://github.com/xingchenzhang/MFIFB)
     ```bash
     python test.py --opt options/test/MFF_Test_Dataset.yaml or
     python test.py --opt options/test/EMFF_Test_Dataset.yaml
     ```
-    3. Test visible infrared image fusion
+    3. Test visible infrared image fusion task on RoadScene or TNO
     ```bash
     python test.py --opt options/test/IVF_Test_Dataset.yaml or
     python test.py --opt options/test/TIVF_Test_Dataset.yaml
