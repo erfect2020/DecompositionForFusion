@@ -7,6 +7,8 @@
 - Python 3
 - NVIDIA GPU + CUDA cuDNN
 - PyTorch 1.9
+- Pillow
+- Opencv
 
 
 ## Getting Started
