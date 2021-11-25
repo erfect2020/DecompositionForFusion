@@ -1,0 +1,29 @@
+name: VisibleInfrareFusionTNO_TEST
+use_tb_logger: false
+model: FusionModel # reconstruct Defocus network.
+
+dataset:
+  test:
+    name: test
+    dataroot:  ~/Documents/fusion-dataset/TNO_dataset
+    batch_size: 1
+    workers: 1
+    datashell: IVF
+
+network_G:
+  in_nc: 3
+  block_num: 2
+  init: xavier
+  hidden_channels: 128
+  K: 4
+
+path:
+  pretrain_model_G: ~
+  strict_load: true
+#  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/MEFModel/models/20_models.pth SelftrainedFinalCopy_showonpapers
+  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/SelftrainedFinalCopy/models/8_models.pth #7_models_backup.pth
+  pretrained_models_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/BestPretrainedModel/models/9_models.pth
+
+logger:
+  print_freq: 10
+  save_checkpoint_freq: 20 #!!float 5e3

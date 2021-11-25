@@ -1,0 +1,31 @@
+name: MultiFocusFusion_TEST
+use_tb_logger: false
+model: FusionModel # reconstruct Defocus network.
+
+dataset:
+  test:
+    name: test
+    dataroot:  ~/Documents/fusion-dataset/ResultsMFIF
+    batch_size: 1
+    workers: 1
+    part_name: .
+    datashell: MFF
+
+network_G:
+  in_nc: 3
+  block_num: 2
+  init: xavier
+  hidden_channels: 128
+  K: 4
+
+path:
+  pretrain_model_G: ~
+  strict_load: true
+#  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/MEFModel/models/20_models.pth SelftrainedFinalCopy_showonpapers/models/10_models_1.196.pth
+  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/SelftrainedFinalCopy/models/34_models.pth #SelftrainedFinalCopy_showonpapers/models/7_models_backup.pth #SelftrainedFinalCopy/models/19_models.pth #SelftrainedFinalCopy/models/14_models.pth
+  #SelftrainedFinalRefine/models/1_models.pth #SelftrainedFinalCopy_showonpapers/models/7_models_backup.pth #14_models.pth
+  pretrained_models_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/BestPretrainedModel/models/9_models.pth
+
+logger:
+  print_freq: 10
+  save_checkpoint_freq: 20 #!!float 5e3
