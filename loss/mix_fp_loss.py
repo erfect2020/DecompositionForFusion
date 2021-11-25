@@ -8,19 +8,10 @@ class SelfTrainLoss(nn.Module):
         self.mse_loss = nn.MSELoss()
         self.is_train = False
         self.iteres = {
-            'self_supervise_common_difficult': 0,
             'self_supervised_common_mix': 0,
             'self_supervised_upper_mix': 0,
             'self_supervised_lower_mix': 0,
             'self_supervised_fusion_mix': 0,
-            'self_similar': 0,
-            'zero_ul_constraint': 0,
-            'self_supervised_common_easy': 0,
-            'self_upper_constraint': 0,
-            'zero_common_constraint': 0,
-            'self_supervised_upper': 0,
-            'self_lower_constraint': 0,
-            'self_supervised_lower': 0,
             'total_loss': 0
         }
 
