@@ -60,7 +60,6 @@ cd DecompositionForFusion
     python test.py --opt options/test/IVF_Test_Dataset.yaml or
     python test.py --opt options/test/TIVF_Test_Dataset.yaml
     ```
-    ```
 
 ## License
 ----------
