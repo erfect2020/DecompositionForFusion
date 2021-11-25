@@ -14,7 +14,7 @@ Training
 Testing code
 ----------
 
-1. Download test dataset 
+1. Download test dataset:
     1.Multi-exposure image fusion: [MEFB](https://github.com/xingchenzhang/MEFB):https://github.com/xingchenzhang/MEFB 
     2.Visible-infrared image fusion: [TNO](https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029):https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029
 3. Modify [test.py](test.py) to select the data preprocess files for different tasks: 
