@@ -1,14 +1,20 @@
 import argparse
 from utils import  util
 from data.multi_exposure_dataset import TestDataset
+# from data.multi_focus_dataset import TestDataset
+# from data.multi_focus_dataset import TestMFFDataset as TestDataset
+# from data.visir_fusion_dataset import TestDataset
+# from data.visir_fusion_dataset import TestTNODataset as TestDataset
 from torch.utils.data import DataLoader
-from models.UCTestModel import UCTestNet
+from models.UCTestShareModelProCommon import UCTestSharedNetPro
 from tqdm import tqdm
 from torchvision.transforms import ToPILImage
 import os
 import torch
 import option.options as option
 import logging
+import torch.nn.functional as F
+
 
 
 parser = argparse.ArgumentParser()
@@ -37,7 +43,7 @@ test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False,
 logger.info('Number of test images in [{:s}]: {:d}'.format(dataset_opt['name'], len(test_dataset)))
 
 
-model = UCTestNet()
+model = UCTestSharedNetPro()
 device_id = torch.cuda.current_device()
 resume_state = torch.load(opt['path']['resume_state'],
                                   map_location=lambda storage, loc: storage.cuda(device_id))
@@ -58,13 +64,25 @@ model.eval()
 for test_data in tqdm(test_loader):
     with torch.no_grad():
         o_img, u_img, root_name = test_data
+
+        padding_number = 16
+
+        o_img = F.pad(o_img, (padding_number, padding_number, padding_number, padding_number), mode='reflect')
+        u_img = F.pad(u_img, (padding_number, padding_number, padding_number, padding_number), mode='reflect')
         o_img = o_img.cuda()
         u_img = u_img.cuda()
-        
+
         common_part, upper_part, lower_part, fusion_part = model(o_img, u_img)
 
+        o_img = o_img[:, :, padding_number:-padding_number, padding_number:-padding_number]
+        u_img = u_img[:, :, padding_number:-padding_number, padding_number:-padding_number]
+        common_part = common_part[:, :, padding_number:-padding_number, padding_number:-padding_number]
+        upper_part = upper_part[:, :, padding_number:-padding_number, padding_number:-padding_number]
+        lower_part = lower_part[:, :, padding_number:-padding_number, padding_number:-padding_number]
+        fusion_part = fusion_part[:, :, padding_number:-padding_number, padding_number:-padding_number]
+        print("ou img", o_img.shape, u_img.shape, fusion_part.shape, root_name)
+
         recover = fusion_part
-        # recover = torch.maximum(torch.maximum(common_part, upper_part), lower_part)
         # Save ground truth
         img_dir = opt['path']['test_images']
 
@@ -80,19 +98,20 @@ for test_data in tqdm(test_loader):
         lower_img_path = os.path.join(img_dir, "{:s}_lower.png".format(root_name[0]))
         lower_img.save(lower_img_path)
 
-        over_img = ToPILImage()(o_img[0])
+        over_img = ToPILImage()(o_img[0])#.convert('L')
         o_img_path = os.path.join(img_dir, "{:s}_over.png".format(root_name[0]))
         over_img.save(o_img_path)
 
-        under_img = ToPILImage()(u_img[0])
+        under_img = ToPILImage()(u_img[0])#.convert('L')
         u_img_path = os.path.join(img_dir, "{:s}_under.png".format(root_name[0]))
         under_img.save(u_img_path)
 
-        recover_img = ToPILImage()(recover.clamp(0,1)[0])
+        recover_img = ToPILImage()(recover.clamp(0,1)[0])#.convert('L')
         save_img_path = os.path.join(img_dir, "{:s}_recover.png".format(root_name[0]))
         recover_img.save(save_img_path)
         # calculate psnr
         idx += 1
+
         avg_ssim += util.calculate_ssim(o_img, recover) + util.calculate_ssim(u_img, recover)
         logger.info("current {} over ssim is {:.4e} under ssim is {: .4e}".format(root_name[0] ,
                                                        util.calculate_ssim(o_img, recover),
