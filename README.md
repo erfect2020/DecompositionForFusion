@@ -1,7 +1,7 @@
 # Fusion from Decomposition
 
 ## Prerequisites
-- Linux or macOS
+- Linux
 - Python 3
 - NVIDIA GPU + CUDA cuDNN
 - PyTorch 1.9
