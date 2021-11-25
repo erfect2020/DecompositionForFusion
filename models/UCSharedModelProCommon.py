@@ -13,7 +13,6 @@ class UCSharedNetPro(nn.Module):
                          ResNestLayer(Bottleneck, 8, 6, stem_width=8, norm_layer=None),
                          ]
         self.encoder_upper = nn.Sequential(*encoder_upper)
-        # self.encoder_upper_in = nn.InstanceNorm2d(64,affine=True)
         self.maxpool_upper = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
         self.upper_encoder_layer1 = ResNestLayer(Bottleneck, 16, 6, stem_width=16, norm_layer=None, is_first=False)
         self.upper_encoder_layer2 = ResNestLayer(Bottleneck, 32, 4, stem_width=32, stride=2, norm_layer=None)
