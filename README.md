@@ -1,3 +1,21 @@
+## Prerequisites
+- Linux or macOS
+- Python 3
+- NVIDIA GPU + CUDA cuDNN
+- PyTorch 1.9
+
+
+## Getting Started
+### Installation
+- Install python libraries and requests.
+
+- Clone this repo:
+```bash
+git clone https://github.com/xxxxx/XXXXXXX
+cd DecompositionForFusion
+```
+
+
 # Fusion from Decomposition
 
 Start run
