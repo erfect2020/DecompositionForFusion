@@ -18,7 +18,7 @@ Start evaluation
     2. Multi-focus image fusion: [Real-MFF](https://githubmemory.com/repo/Zancelot/Real-MFF):https://githubmemory.com/repo/Zancelot/Real-MFF, [Dataset](https://github.com/xingchenzhang/MFIFB):https://github.com/xingchenzhang/MFIFB.
     3. Visible-infrared image fusion: [RoadScene](https://github.com/jiayi-ma/RoadScene):https://github.com/jiayi-ma/RoadScene, [TNO](https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029):https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029.
 3. Modify [test.py](test.py) to select the data preprocess files for different tasks: 
-4. (Option) Our pretrain model is avaliable at [Google Drive](https://drive.google.com/file/d/1CUoFLiV3mugvbfBcMcwgXbDF6bWPhdd9/view?usp=sharing)
+4. (Option) Our pretrained model is avaliable at [Google Drive](https://drive.google.com/file/d/1CUoFLiV3mugvbfBcMcwgXbDF6bWPhdd9/view?usp=sharing)
 5. Test DeFusion
     1. Test multi-exposure image fusion task on [MEFB](https://github.com/xingchenzhang/MEFB) or [SICE](https://github.com/csjcai/SICE)
     ```bash
