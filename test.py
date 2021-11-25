@@ -60,10 +60,7 @@ for test_data in tqdm(test_loader):
         o_img, u_img, root_name = test_data
         o_img = o_img.cuda()
         u_img = u_img.cuda()
-        # o_img, u_img = u_img, o_img
-        # u_img = torch.rand_like(u_img).cuda()
-        # u_img = o_img.clone().cuda()
-        print("ou img", o_img.shape, u_img.shape, root_name)
+        
         common_part, upper_part, lower_part, fusion_part = model(o_img, u_img)
 
         recover = fusion_part
