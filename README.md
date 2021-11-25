@@ -1,4 +1,4 @@
-# DecompositionForFusion
+# Fusion from Decomposition
 
 Training
 ----------
