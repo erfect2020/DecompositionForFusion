@@ -1,6 +1,8 @@
 # Fusion from Decomposition
+----------
 
 ## Prerequisites
+----------
 - Linux
 - Python 3
 - NVIDIA GPU + CUDA cuDNN
@@ -8,6 +10,7 @@
 
 
 ## Getting Started
+----------
 ### Installation
 - Install python libraries and requests.
 
