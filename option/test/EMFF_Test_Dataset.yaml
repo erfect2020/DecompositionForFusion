@@ -21,10 +21,8 @@ network_G:
 path:
   pretrain_model_G: ~
   strict_load: true
-#  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/MEFModel/models/20_models.pth SelftrainedFinalCopy_showonpapers/models/10_models_1.196.pth
-  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/SelftrainedFinalCopy/models/20_models.pth #SelftrainedFinalCopy/models/14_models.pth
-  #SelftrainedFinalRefine/models/1_models.pth #SelftrainedFinalCopy_showonpapers/models/7_models_backup.pth #14_models.pth
-  pretrained_models_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/BestPretrainedModel/models/9_models.pth
+  resume_state: /home/lpw/Documents/multi-exposure/SelfSupervisedFusion/experiments/SelftrainedFinalCopy/models/50_models.pth
+  pretrained_models_state: ~
 
 logger:
   print_freq: 10
