@@ -21,13 +21,17 @@ Testing code
 4. Test DeFusion
     1. Test multi-exposure image fusion
     ```bash
-    python test.py --opt options/test/MEF_Test_Dataset.yaml
+    python test.py --opt options/test/MEF_Test_Dataset.yaml or
+    python test.py --opt options/test/SMEF_Test_Dataset.yaml
     ```
     2. Test multi-focus image fusion
     ```bash
-    python test.py --opt options/test/MFF_Test_Dataset.yaml
+    python test.py --opt options/test/MFF_Test_Dataset.yaml or
+    python test.py --opt options/test/EMFF_Test_Dataset.yaml
     ```
     3. Test visible infrared image fusion
     ```bash
-    python test.py --opt options/test/IVF_Test_Dataset.yaml
+    python test.py --opt options/test/IVF_Test_Dataset.yaml or
+    python test.py --opt options/test/TIVF_Test_Dataset.yaml
+    ```
     ```
