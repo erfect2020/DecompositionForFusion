@@ -61,3 +61,7 @@ cd DecompositionForFusion
     python test.py --opt options/test/TIVF_Test_Dataset.yaml
     ```
     ```
+
+## License
+----------
+Distributed under the MIT License. See ```LICENSE.txt``` for more information.
