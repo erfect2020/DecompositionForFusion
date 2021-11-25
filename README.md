@@ -9,7 +9,6 @@ Training
     ```bash
     python selftrain.py --opt options/train/SelfTrained_SDataset.yaml
     ```
-    ```
 
 
 Testing code
