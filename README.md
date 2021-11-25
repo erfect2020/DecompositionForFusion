@@ -14,9 +14,11 @@ Training
 Testing code
 ----------
 
-1. Download test dataset [MEFB](https://github.com/xingchenzhang/MEFB):https://github.com/xingchenzhang/MEFB [TNO](https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029):https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029
-2. Modify [test.py](test.py) to select the data preprocess files for different tasks: 
-3. Test DeFusion
+1. Download test dataset 
+    1.Multi-exposure image fusion: [MEFB](https://github.com/xingchenzhang/MEFB):https://github.com/xingchenzhang/MEFB 
+    2.Visible-infrared image fusion: [TNO](https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029):https://figshare.com/articles/dataset/TNO_Image_Fusion_Dataset/1008029
+3. Modify [test.py](test.py) to select the data preprocess files for different tasks: 
+4. Test DeFusion
     1. Test multi-exposure image fusion
     ```bash
     python test.py --opt options/test/MEF_Test_Dataset.yaml
