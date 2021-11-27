@@ -47,8 +47,7 @@ model = UCTestSharedNetPro()
 device_id = torch.cuda.current_device()
 resume_state = torch.load(opt['path']['resume_state'],
                                   map_location=lambda storage, loc: storage.cuda(device_id))
-logger.info('Resuming training from epoch: {}.'.format(
-    resume_state['epoch']))
+
 model.load_state_dict(resume_state['state_dict'])
 model = model.cuda()
 model.eval()
