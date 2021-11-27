@@ -1,4 +1,4 @@
-name: SelftrainedFinal
+name: Selftrained
 use_tb_logger: true
 model: UCMConv # reconstruct Camera response function network
 
