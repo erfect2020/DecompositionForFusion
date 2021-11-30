@@ -137,8 +137,8 @@ class TrainDataset(Dataset):
             else:
                 mask1, mask2 = grid2, grid1
 
-            o_rand = torch.randn_like(o_img).abs()
-            u_rand = torch.randn_like(u_img).abs()
+            o_rand = torch.randn_like(o_img).abs().clamp(0,1)
+            u_rand = torch.randn_like(u_img).abs().clamp(0,1)
             o_img = o_img * mask1 + o_rand * (1.0 - mask1) #* torch.rand(1).item()
             u_img = u_img * mask2 + u_rand * (1.0 - mask2) #* torch.rand(1).item()
             gt_img = torch.cat((mask1.unsqueeze(0), mask2.unsqueeze(0), combime_img), dim=0)
