@@ -35,7 +35,6 @@ cd DecompositionForFusion
     python selftrain.py --opt options/train/SelfTrained_SDataset.yaml
     ```
 
-
 ### Start evaluation
 ----------
 
