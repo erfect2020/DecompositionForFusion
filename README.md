@@ -1,5 +1,6 @@
 # Fusion from Decomposition
 ----------
+This repository is an official implementation of Fusion from Decomposition: A Self-Supervised Decomposition Approach for Image Fusion (ECCV 2022).
 
 ## Prerequisites
 ----------
@@ -60,6 +61,8 @@ cd DecompositionForFusion
     python test.py --opt options/test/IVF_Test_Dataset.yaml or
     python test.py --opt options/test/TIVF_Test_Dataset.yaml
     ```
+
+
 
 ## License
 ----------
