@@ -1,6 +1,6 @@
 # Fusion from Decomposition
 ----------
-This repository is an official implementation of *Fusion from Decomposition: A Self-Supervised Decomposition Approach for Image Fusion* (ECCV 2022).
+This repository is an official implementation of **Fusion from Decomposition: A Self-Supervised Decomposition Approach for Image Fusion** (ECCV 2022).
 
 ## Prerequisites
 ----------
