@@ -67,3 +67,16 @@ cd DecompositionForFusion
 ## License
 ----------
 Distributed under the MIT License. See ```LICENSE.txt``` for more information.
+
+## Citations
+----------
+If DeFusion helps your research or work, please consider citing DeFusion.
+
+@InProceedings{Liang2022ECCV,
+    author    = {Liang, Pengwei and Jiang, Junjun and Liu, Xianming and Ma, Jiayi},
+    title     = {Fusion from Decomposition: A Self-Supervised Decomposition Approach for Image Fusion},
+    booktitle = {European Conference on Computer Vision (ECCV)},
+    year      = {2022},
+}
+
+
