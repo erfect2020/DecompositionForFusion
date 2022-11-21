@@ -20,7 +20,7 @@ This repository is an official implementation of **Fusion from Decomposition: A 
 - Install python libraries and requests.
 - Clone this repo:
 ```bash
-git clone https://github.com/XXXXX/XXXXXXX
+gh repo clone erfect2020/DecompositionForFusion
 cd DecompositionForFusion
 ```
 
