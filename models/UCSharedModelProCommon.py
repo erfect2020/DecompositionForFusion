@@ -29,7 +29,7 @@ class UCSharedNetPro(nn.Module):
         ]
         self.common_encoder = nn.Sequential(*encoder_body_fusion)
 
-        self.decoder_common_layer1 = ResNestLayer(Bottleneck, 64, 4, stem_width=512, avg_down=False, avd=False, stride=1, norm_layer=None)
+        self.decoder_common_layer1 = ResNestLayer(Bottleneck, 64, 4, stem_width=768, avg_down=False, avd=False, stride=1, norm_layer=None)
         self.decoder_common_up1 = nn.Upsample(scale_factor=2, mode='bilinear') # nn.PixelShuffle(2)
         self.decoder_common_layer2 = ResNestLayer(Bottleneck, 16, 4, stem_width=256, avg_down=False, avd=False, stride=1, norm_layer=None)
         self.decoder_common_up2 = nn.Upsample(scale_factor=2, mode='bilinear') # nn.PixelShuffle(2)
