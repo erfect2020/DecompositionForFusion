@@ -97,6 +97,7 @@ class UCSharedNetPro(nn.Module):
         feature_concat = torch.cat((feature_upper3, feature_lower3), dim=1)
         feature_common = self.common_encoder(feature_concat)
 
+        common_part = torch.cat((feature_common, feature_upper3, feature_lower3), dim=1)
         common_part = self.decoder_common_layer1(feature_common)
         common_part = self.decoder_common_up1(common_part)
         common_part = torch.cat((common_part, feature_upper2, feature_lower2), dim=1)
